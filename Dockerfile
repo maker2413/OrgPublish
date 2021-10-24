@@ -4,7 +4,7 @@ WORKDIR /opt/
 
 RUN apk add emacs-nox
 
-COPY install.el publish.el entrypoint.sh ./
+COPY install.el publish.el ./
 
 RUN emacs --batch --load install.el
 
