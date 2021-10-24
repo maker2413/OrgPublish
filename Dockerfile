@@ -8,4 +8,4 @@ COPY install.el publish.el entrypoint.sh ./
 
 RUN emacs --batch --load install.el
 
-ENTRYPOINT ["./entrypoint.sh"]
+CMD ["emacs" "-Q" "--script" "/opt/publish.el"]
