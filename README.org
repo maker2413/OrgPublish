@@ -1,0 +1,16 @@
+#+TITLE: OrgPublish
+
+This repo builds a docker image to publish org files to html. This docker image
+is built off of alpine:latest to keep it as small and minimal as possible.
+
+* Running
+  To run this docker image to publish your org-mode files to html simply run the
+  command:
+
+  ~docker run -v <org directory>:/opt/OrgFiles maker2413/OrgPublish~
+
+* Configuring
+  This docker iamge has a publish.el file that I put together to do a basic
+  publish of org files to html. This publish function can be overwritten by
+  passing a custom publish.el in via the ~-v~ flag. The entrypoint for this
+  docker image uses ~/opt/publish.el~ for the publish function.
