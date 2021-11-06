@@ -1,16 +1,45 @@
 #+TITLE: OrgPublish
 
+This repo provides a GitHub action to allow you to publish org-roam files to
+html files. I use this action to publish my org-roam notes to my website:
+https://www.ethanp.dev/.
+
 This repo builds a docker image to publish org files to html. This docker image
 is built off of alpine:latest to keep it as small and minimal as possible.
 
-* Running
-  To run this docker image to publish your org-mode files to html simply run the
-  command:
+* Action Parameters
+  This action has the following inputs that can be configured:
+  - publish_script :: used to specify a custom elisp publish script.
 
-  ~docker run -v <org directory>:/opt/OrgFiles maker2413/OrgPublish~
+* Usage
+  #+begin_src yaml
+    name: Publish
+    on:
+      push:
+        branches:
+          - master
 
-* Configuring
-  This docker iamge has a publish.el file that I put together to do a basic
-  publish of org files to html. This publish function can be overwritten by
-  passing a custom publish.el in via the ~-v~ flag. The entrypoint for this
-  docker image uses ~/opt/publish.el~ for the publish function.
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+
+        - name: Publish Org Files
+          uses: maker2413/OrgPublish@v1.0.0
+  #+end_src
+
+* Running Docker Image
+  You can also run this docker image without utilizing the action. This can be
+  useful for local publishing outside of GitHub actions or for developing a
+  custom elisp script for publishing. To run this docker image to publish your
+  org-roam files to html you just have to run the following command:
+
+  ~docker run -v <org-roam directory>:/opt/OrgFiles maker2413/orgroampublish~
+
+  You can also run your own custom publish script by simply providing it as an
+  argument to this command:
+
+  ~docker run -v <org-roam directory>:/opt/OrgFiles maker2413/orgroampublish <custom.el>~

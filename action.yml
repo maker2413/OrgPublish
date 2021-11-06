@@ -1,0 +1,24 @@
+name: "Org Publish"
+description: "Publish Org Files to HTML"
+author: "Maker2413 <maker2413@gmail.com>"
+branding:
+  icon: "file-plus"
+  color: "purple"
+inputs:
+  publish_script:
+    default: "/opt/publish.el"
+    required: false
+    description: "elisp script to use for publishing"
+runs:
+  using: "composite"
+  steps:
+    - name: Pull Image
+      run: |
+        docker pull maker2413/orgpublish:latest
+      shell: bash
+
+    - name: Run Container
+      run: |
+        docker run --rm -v $(pwd):/opt/OrgFiles maker2413/orgpublish:latest \
+        ${{ inputs.publish_script }}
+      shell: bash
