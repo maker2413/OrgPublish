@@ -2,7 +2,7 @@
 
 This repo provides a GitHub action to allow you to publish org-roam files to
 html files. I use this action to publish my org-roam notes to my website:
-https://www.ethanp.dev/.
+https://notes.ethancpost.com.
 
 This repo builds a docker image to publish org files to html. This docker image
 is built off of alpine:latest to keep it as small and minimal as possible.
