@@ -2,8 +2,7 @@
 
 (package-initialize)
 
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 (package-refresh-contents)
 
